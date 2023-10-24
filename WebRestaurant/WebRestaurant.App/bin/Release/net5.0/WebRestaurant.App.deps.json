@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "WebRestaurant.App/1.0.0": {
+        "dependencies": {
+          "WebRestaurant.Domain": "1.0.0",
+          "WebRestaurant.Shared": "1.0.0"
+        },
+        "runtime": {
+          "WebRestaurant.App.dll": {}
+        }
+      },
+      "WebRestaurant.Domain/1.0.0": {
+        "runtime": {
+          "WebRestaurant.Entity.dll": {}
+        }
+      },
+      "WebRestaurant.Shared/1.0.0": {
+        "runtime": {
+          "WebRestaurant.Shared.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WebRestaurant.App/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WebRestaurant.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WebRestaurant.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

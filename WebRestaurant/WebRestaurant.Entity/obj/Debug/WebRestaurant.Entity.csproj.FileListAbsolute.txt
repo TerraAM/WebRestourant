@@ -1,0 +1,83 @@
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.AssemblyReference.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CoreCompileInputs.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\bin\Debug\System.ComponentModel.Annotations.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CopyComplete
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\ServiceStack.Interfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\System.ComponentModel.Annotations.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.AssemblyReference.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CoreCompileInputs.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CopyComplete
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)\WebRestaurant(V@)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\ServiceStack.Interfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.ComponentModel.Annotations.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.AssemblyReference.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CoreCompileInputs.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CopyComplete
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V5) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\ServiceStack.Interfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\System.ComponentModel.Annotations.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.AssemblyReference.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CoreCompileInputs.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CopyComplete
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V6) (AuthV2)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\ServiceStack.Interfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.ComponentModel.Annotations.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.AssemblyReference.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CoreCompileInputs.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CopyComplete
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V7) (ViewFixes)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\WebRestaurant.Entity.pdb
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\ServiceStack.Interfaces.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\System.ComponentModel.Annotations.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.AssemblyReference.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CoreCompileInputs.cache
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.csproj.CopyComplete
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.dll
+G:\Подработка\Вышка\3 Курс Курсовая (Диляра)+\WebRestaurant(V8) (AddNewFitches)\WebRestaurant.Entity\obj\Debug\WebRestaurant.Entity.pdb

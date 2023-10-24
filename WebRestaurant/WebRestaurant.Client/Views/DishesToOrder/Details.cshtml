@@ -1,0 +1,37 @@
+﻿@model WebRestaurant.Shared.Dtos.DishesToOrderDto
+
+@{
+    ViewData["Title"] = "Описание";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Описание</h1>
+
+<div>
+    <h4>Блюдо к заказу</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dish)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dish.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Изменить</a> |
+    <a asp-action="Index">К списку</a>
+</div>

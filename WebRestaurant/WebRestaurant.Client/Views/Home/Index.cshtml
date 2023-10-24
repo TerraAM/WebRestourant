@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebRestaurant.Shared.Dtos.DishDto>
+
+@{
+    ViewData["Title"] = "Главная";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="section_title text-center mb-50">
+            <h3>Вкусная еда, для вас!</h3>
+        </div>
+    </div>
+</div>
+
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="row">
+            @if (Model.Any())
+            {
+                foreach (var Dish in Model)
+                {
+                    <div class="col-xl-12 col-md-10 col-lg-8">
+                        <div class="single_delicious d-flex align-items-center">
+                            <div class="thumb">
+                                <h3>#@Dish.Id @Dish.Name</h3>
+                                <img src="@Dish.PhotoPath" alt="">
+                            </div>
+                            <div class="info">
+                                <h6>Описание:</h6>
+                                <p>@Dish.Description</p>
+
+                                <a class="link-style" onclick="showIngredients(@Dish.Id)">Состав</a>           
+                                <span >@Dish.Price руб.</span>
+                                Кол-во: 
+                                <input type="number" class="quantity-input" min="1" value="1" max="10"> <br><br>
+                                <button class="btn btn-success add-to-cart-button" data-product-id="@Dish.Id">Выбрать</button>
+                                <a class="btn btn-primary" asp-action="Details" asp-route-id="@Dish.Id">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <span>Товаров нет</span>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function showIngredients(id) {
+        var ingredients = document.getElementById("ingredients-" + id);
+        if (ingredients.style.display === "none") {
+            ingredients.style.display = "block";
+        } else {
+            ingredients.style.display = "none";
+        }
+    }
+</script>
