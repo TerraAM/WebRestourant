@@ -92,7 +92,7 @@ namespace WebRestaurant.Client.Controllers
 			}
 
 			//Если указана время, но не указана продолжиельность, то ничего не делать
-			if (Duration <= 0 && Time >= DateTime.Now)
+			if (preOrders == null && Duration <= 0 && Time >= DateTime.Now)
 			{
 				return RedirectToAction(nameof(Index));
 			}
@@ -100,13 +100,6 @@ namespace WebRestaurant.Client.Controllers
 			//Если время выбрано в нерабочее время, то ничего не делать
 			if (Time.TimeOfDay.Hours > endDayH || Time.TimeOfDay.Hours < startDayH)
 			{
-				return RedirectToAction(nameof(Index));
-			}
-
-			if (preOrders == null)
-			{
-				// Если список еще не существует, создаем новый список
-				preOrders = new List<PreOrder>();
 				return RedirectToAction(nameof(Index));
 			}
 
@@ -128,32 +121,28 @@ namespace WebRestaurant.Client.Controllers
 			{
 				DateCreate = Time,
 				ClientId = client.Id,
+				DinnerTableId = DinnerTableId,
+				Duration = Duration,
 				StatusId = statusInteractor.GetAll().Result.Value.FirstOrDefault().Id
 			};
-
-			if (dinnerTableInteractor.GetById(DinnerTableId).Result.Value.Number != 0)
-			{
-				newOrder.DinnerTableId = DinnerTableId;
-			}
-
-			if (Duration != 0)
-			{
-				newOrder.Duration = Duration;
-			}
-
-			foreach (var preOrder in preOrders)
-			{
-				tempDish = dishInteractor.GetAll().Result.Value.FirstOrDefault(x => x.Id == preOrder.DishId);
-				DishesToOrder.Add(new DishesToOrderDto()
+			if (preOrders != null)
+			{ 
+				foreach (var preOrder in preOrders)
 				{
-					DishId = tempDish.Id,
-					OrderId	= newOrder.Id,
-					Amount = preOrder.Amount
-				});
-				totalPrice += tempDish.Price * preOrder.Amount;
+					tempDish = dishInteractor.GetAll().Result.Value.FirstOrDefault(x => x.Id == preOrder.DishId);
+					DishesToOrder.Add(new DishesToOrderDto()
+					{
+						DishId = tempDish.Id,
+						OrderId	= newOrder.Id,
+						Amount = preOrder.Amount
+					});
+					totalPrice += tempDish.Price * preOrder.Amount;
+				}
 			}
+
 			newOrder.Price = totalPrice;
 			await orderInteractor.Create(newOrder);
+
 			foreach (var dishToOrder in DishesToOrder)
 			{
 				await dishesToOrderInteractor.Create(dishToOrder);
