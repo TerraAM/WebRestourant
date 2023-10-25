@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,8 @@ using WebRestaurant.Shared.Dtos;
 
 namespace WebRestaurant.Client.Controllers
 {
-    public class DishController : Controller
+	[Authorize(Roles = "admin")]
+	public class DishController : Controller
     {
         private readonly DishInteractor interactor;
         IWebHostEnvironment _appEnvironment;

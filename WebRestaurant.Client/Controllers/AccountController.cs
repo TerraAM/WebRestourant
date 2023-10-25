@@ -71,7 +71,7 @@ namespace WebRestaurant.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-				var user = interactor.GetAll().Result.Value.FirstOrDefault(u => u.Email == model.Email && u.Password == u.Password);
+				var user = interactor.GetAll().Result.Value.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
 				if (user != null)
                 {
                     await Authenticate(user); // аутентификация

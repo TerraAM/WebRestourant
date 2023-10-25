@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,8 @@ using WebRestaurant.Shared.Dtos;
 
 namespace WebRestaurant.Client.Controllers
 {
-    public class OrderController : Controller
+	[Authorize(Roles = "admin")]
+	public class OrderController : Controller
     {
         private readonly OrderInteractor interactor;
         private readonly UserInteractor userInteractor;
@@ -28,11 +30,17 @@ namespace WebRestaurant.Client.Controllers
             this.statusInteractor = statusInteractor;
         }
 
-        // GET: Orders
+		// GET: Orders
+		[AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var response = await interactor.GetAll();
-            return View(response.Value);
+            var response = interactor.GetAll().Result.Value;
+			if (!User.IsInRole("admin"))
+			{
+				var client = userInteractor.GetAll().Result.Value.FirstOrDefault(x => x.Email == User.Identity.Name);
+				return View(response.Where(x=>x.ClientId == client.Id));
+			}
+			return View(response);
         }
 
         // GET: Orders/Details/5

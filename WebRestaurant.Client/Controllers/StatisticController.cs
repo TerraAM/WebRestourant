@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using WebRestaurant.Adapter.Services;
 using WebRestaurant.App.Interactors;
@@ -10,6 +12,7 @@ using WebRestaurant.Shared.Model;
 
 namespace WebRestaurant.Client.Controllers
 {
+	[Authorize(Roles = "admin")]
 	public class StatisticController : Controller
 	{
 		private readonly DishInteractor dishInteractor;
