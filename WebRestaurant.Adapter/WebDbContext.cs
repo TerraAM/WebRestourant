@@ -17,41 +17,39 @@ namespace WebRestaurant.Adapter.Services
         {
             Database.EnsureCreated();
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    string adminRoleName = "admin";
-        //    string userRoleName = "user";
-        //    string waiterRoleName = "waiter";
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			string adminRoleName = "admin";
+			string userRoleName = "user";
+			string waiterRoleName = "waiter";
 
-        //    string adminEmail = "admin@mail.ru";
-        //    string adminPassword = "321";
-            
-        //    string userEmail = "1@1.com";
-        //    string userPassword = "123";
+			string adminEmail = "admin@mail.ru";
+			string adminPassword = "321";
 
-        //    string waitingOrderStatus = "На ожидании";
-        //    string inProgressOrderStatus = "В процессе";
-        //    string compliteOrderStatus = "Готов";
-            
-        //    Role adminRole = new Role { Id = 1, Name = adminRoleName };
-        //    Role userRole = new Role { Id = 2, Name = userRoleName };
-        //    Role waiterRole = new Role { Id = 3, Name = waiterRoleName };
-        //    User Anonymous = new User { Id = 1, Email = "anon@mail.com", Password = "anon", RoleId = userRole.Id };
-        //    User adminUser = new User { Id = 2, Email = adminEmail, Password = adminPassword, RoleId = adminRole.Id };
-        //    User User = new User { Id = 3, Email = userEmail, Password = userPassword, RoleId = userRole.Id };
-        //    User waiter = new User { Id = 4, Email = "waiter@mail.com", Password = "1", RoleId = waiterRole.Id };
-        //    OrderStatus status1 = new OrderStatus() {Id = 1, Name = waitingOrderStatus};
-        //    OrderStatus status2 = new OrderStatus() { Id = 2, Name = inProgressOrderStatus };
-        //    OrderStatus status3 = new OrderStatus() { Id = 3, Name = compliteOrderStatus };
-            
-        //    DinnerTable dinnerTable = new DinnerTable() { Id = 1, Number = 1 };
+			string userEmail = "1@1.com";
+			string userPassword = "123";
 
-        //    modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole, waiterRole });
-        //    modelBuilder.Entity<User>().HasData(new User[] { Anonymous, adminUser, User, waiter });
-        //    modelBuilder.Entity<OrderStatus>().HasData(new OrderStatus[] { status1,status2,status3 });
-        //    modelBuilder.Entity<DinnerTable>().HasData(new DinnerTable[] { dinnerTable });
+			string waitingOrderStatus = "На ожидании";
+			string inProgressOrderStatus = "В процессе";
+			string compliteOrderStatus = "Готов";
 
-        //    base.OnModelCreating(modelBuilder);
-        //}
+			Role adminRole = new Role { Id = 1, Name = adminRoleName };
+			Role userRole = new Role { Id = 2, Name = userRoleName };
+			Role waiterRole = new Role { Id = 3, Name = waiterRoleName };
+			User Anonymous = new User { Id = 1,Name = "anon", Email = "anon@mail.com", Password = "anon", RoleId = 2 };
+			User adminUser = new User { Id = 2, Name = "admin", Email = adminEmail, Password = adminPassword, RoleId = 1 };
+			User User = new User { Id = 3, Name = "user", Email = userEmail, Password = userPassword, RoleId = 2 };
+			User waiter = new User { Id = 4, Name = "waiter", Email = "waiter@mail.com", Password = "1", RoleId = 3 };
+			OrderStatus status1 = new OrderStatus() { Id = 1, Name = waitingOrderStatus };
+			OrderStatus status2 = new OrderStatus() { Id = 2, Name = inProgressOrderStatus };
+			OrderStatus status3 = new OrderStatus() { Id = 3, Name = compliteOrderStatus };
+
+			modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole, waiterRole });
+			modelBuilder.Entity<User>().HasData(new User[] { Anonymous, adminUser, User, waiter });
+			modelBuilder.Entity<OrderStatus>().HasData(new OrderStatus[] { status1, status2, status3 });
+			modelBuilder.Entity<DinnerTable>().HasData(new DinnerTable() {Id = 1 });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

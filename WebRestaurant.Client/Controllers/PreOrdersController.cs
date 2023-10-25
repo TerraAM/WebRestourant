@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebRestaurant.Adapter.Services;
+using WebRestaurant.App.Interactors;
 using WebRestaurant.App.Mappers;
 using WebRestaurant.Client.Services;
 using WebRestaurant.Domain.Entity;
@@ -17,12 +18,27 @@ namespace WebRestaurant.Client.Controllers
 {
     public class PreOrdersController : Controller
     {
-        private readonly WebDbContext _context;
+        private readonly UserInteractor userInteractor;
+		private readonly DishInteractor dishInteractor;
+		private readonly DinnerTableInteractor dinnerTableInteractor;
+		private readonly OrderStatusInteractor statusInteractor;
+		private readonly OrderInteractor orderInteractor;
+		private readonly DishesToOrderInteractor dishesToOrderInteractor;
 
-        public PreOrdersController(WebDbContext context)
+		private readonly int[] DurationList = new int[] { 0, 5, 10, 15, 20, 25, 30, 35, 40, 60, 90, 120 };
+
+		private readonly int startDayH = 8;
+		private readonly int endDayH = 17;
+
+		public PreOrdersController(UserInteractor userInteractor, DishInteractor dishInteractor, DinnerTableInteractor dinnerTableInteractor, OrderStatusInteractor statusInteractor, OrderInteractor orderInteractor, DishesToOrderInteractor dishesToOrderInteractor)
         {
-            _context = context;
-        }
+            this.userInteractor = userInteractor;
+			this.dishInteractor = dishInteractor;
+			this.dinnerTableInteractor = dinnerTableInteractor;
+			this.statusInteractor = statusInteractor;
+			this.orderInteractor = orderInteractor;
+			this.dishesToOrderInteractor = dishesToOrderInteractor;
+		}
 
         // GET: PreOrders
         public ActionResult Index()
@@ -37,64 +53,116 @@ namespace WebRestaurant.Client.Controllers
             {
                 for (int i = 0;i < preOrders.Count;i++) 
                 {
-                    preOrders[i].Dish = _context.Dishes.FirstOrDefault(x => x.Id == preOrders[i].DishId).ToDto();
+                    preOrders[i].Dish = dishInteractor.GetById(preOrders[i].DishId).Result.Value;
                 }
             }
-            ViewData["DinnerTableId"] = new SelectList(_context.DinnerTables, "Id", "Number");
-            return View(preOrders);
+            ViewData["DinnerTableId"] = new SelectList(dinnerTableInteractor.GetAll().Result.Value, "Id", "Number");
+			ViewData["DurationList"] = new SelectList(DurationList);
+			return View(preOrders);
         }
 
         // POST: PreOrders
         [HttpPost]
-        public IActionResult Pricol(int DinnerTableId, int ServiceManId)
+        public async Task<IActionResult> Pricol(int DinnerTableId, int Duration, DateTime Time)
         {
-            List<PreOrder> preOrders = HttpContext.Session.GetObjectFromJson<List<PreOrder>>("preOrdersList");
-            if (preOrders == null)
-            {
-                // Если список еще не существует, создаем новый список
-                preOrders = new List<PreOrder>();
-                return RedirectToAction(nameof(Index));
-            }
+			//Если указан столик, но не указаны продолжиельность и время, то ничего не делать
+			if (dinnerTableInteractor.GetById(DinnerTableId).Result.Value.Number != 0)
+			{
+				if (Duration <= 0 || Time < DateTime.Now)
+				{
+					return RedirectToAction(nameof(Index));
+				}
+			}
+			
+			List<PreOrder> preOrders = HttpContext.Session.GetObjectFromJson<List<PreOrder>>("preOrdersList");
 
-            User client = new User();
+			//Если нет заказов и не выбран столик, то ничего не делать
+			if (preOrders != null)
+			{ 
+				if (preOrders.Count == 0 && dinnerTableInteractor.GetById(DinnerTableId).Result.Value.Number == 0)
+				{ 
+					return RedirectToAction(nameof(Index));
+				}
+			}
 
-            if (!User.Identity.IsAuthenticated)
-            {
-                client = _context.Users.FirstOrDefault();
-            }
-            else
-            {
-                client = _context.Users.FirstOrDefault(x=>x.Email == User.Identity.Name);
-            }
+			//Если указана продолжительность, но не указано время начала, то ничего не делать
+			if (Duration > 0 && Time < DateTime.Now)
+			{
+				return RedirectToAction(nameof(Index));
+			}
 
-            List<DishesToOrder> newapplicationOrders = new List<DishesToOrder>();
-            DishDto tempDish;
-            double totalPrice = 0;
-            OrderDto newOrder = new OrderDto()
-            {
-                DinnerTableId = DinnerTableId,
-                DateCreate = DateTime.Now,
-                Client = client.ToDto(),
-                Status = _context.OrderStatuses.FirstOrDefault().ToDto()
-            };
-            foreach (var preOrder in preOrders)
-            {
-                tempDish = _context.Dishes.FirstOrDefault(x => x.Id == preOrder.DishId).ToDto();
-                newapplicationOrders.Add(new DishesToOrder() 
-                {
-                    Dish = tempDish.ToEntity(),
-                    Order = newOrder.ToEntity(),
-                    Amount = preOrder.Amount
-                });
-                totalPrice += tempDish.Price * preOrder.Amount;
-            }
-            newOrder.Price = totalPrice;
-            _context.Add(newOrder.ToEntity());
-            _context.AddRange(newapplicationOrders);
-            _context.SaveChanges();
-            HttpContext.Session.Clear();
-            ViewData["DinnerTableId"] = new SelectList(_context.DinnerTables, "Id", "Number");
-            return RedirectToAction(nameof(Index));
+			//Если указана время, но не указана продолжиельность, то ничего не делать
+			if (Duration <= 0 && Time >= DateTime.Now)
+			{
+				return RedirectToAction(nameof(Index));
+			}
+
+			//Если время выбрано в нерабочее время, то ничего не делать
+			if (Time.TimeOfDay.Hours > endDayH || Time.TimeOfDay.Hours < startDayH)
+			{
+				return RedirectToAction(nameof(Index));
+			}
+
+			if (preOrders == null)
+			{
+				// Если список еще не существует, создаем новый список
+				preOrders = new List<PreOrder>();
+				return RedirectToAction(nameof(Index));
+			}
+
+			UserDto client = new UserDto();
+
+			if (!User.Identity.IsAuthenticated)
+			{
+				client = userInteractor.GetAll().Result.Value.FirstOrDefault();
+			}
+			else
+			{
+				client = userInteractor.GetAll().Result.Value.FirstOrDefault(x => x.Email == User.Identity.Name);
+			}
+
+			List<DishesToOrderDto> DishesToOrder = new List<DishesToOrderDto>();
+			DishDto tempDish;
+			double totalPrice = 0;
+			OrderDto newOrder = new OrderDto()
+			{
+				DateCreate = Time,
+				ClientId = client.Id,
+				StatusId = statusInteractor.GetAll().Result.Value.FirstOrDefault().Id
+			};
+
+			if (dinnerTableInteractor.GetById(DinnerTableId).Result.Value.Number != 0)
+			{
+				newOrder.DinnerTableId = DinnerTableId;
+			}
+
+			if (Duration != 0)
+			{
+				newOrder.Duration = Duration;
+			}
+
+			foreach (var preOrder in preOrders)
+			{
+				tempDish = dishInteractor.GetAll().Result.Value.FirstOrDefault(x => x.Id == preOrder.DishId);
+				DishesToOrder.Add(new DishesToOrderDto()
+				{
+					DishId = tempDish.Id,
+					OrderId	= newOrder.Id,
+					Amount = preOrder.Amount
+				});
+				totalPrice += tempDish.Price * preOrder.Amount;
+			}
+			newOrder.Price = totalPrice;
+			await orderInteractor.Create(newOrder);
+			foreach (var dishToOrder in DishesToOrder)
+			{
+				await dishesToOrderInteractor.Create(dishToOrder);
+			}
+			HttpContext.Session.Clear();
+
+			ViewData["DinnerTableId"] = new SelectList(dinnerTableInteractor.GetAll().Result.Value, "Id", "Number");
+			ViewData["DurationList"] = new SelectList(DurationList);
+			return RedirectToAction(nameof(Index));
         }
 
         // POST: PreOrders/Delete/5

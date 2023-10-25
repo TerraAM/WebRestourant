@@ -8,58 +8,73 @@
 
 <h1>Список</h1>
 
-@if (Model.Any())
-{
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DishId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                Цена
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dish.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @{
-                    double Price = item.Amount * (double)item.Dish.Price;
-                } @Price руб.
-            </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@Index">Удалить</a>
-            </td>
-        </tr>
-        Index++;
-    }
-    </tbody>
     <form asp-action="Pricol" method="post">
 
         <div class="form-group">
             <label class="control-label">Выберите столик</label>
-            <select class="form-control" name="DinnerTableId" asp-items="ViewBag.DinnerTableId" required></select>
+            <select class="form-control" name="DinnerTableId" asp-items="ViewBag.DinnerTableId"></select>
         </div>
+
+        <div class="form-group">
+            <label class="control-label">Выберите время</label>
+            <input class="form-control" name="Time" type="datetime-local" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Выберите продолжитлеьность (мин.)</label>
+            <select class="form-control" name="Duration" asp-items="ViewBag.DurationList"></select>
+        </div>
+
+        @if (Model.Any())
+        {
+        <thead>
+            <tr>
+                <th>
+                        @Html.DisplayNameFor(model => model.DishId)
+                </th>
+                <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.Dish.Name)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                            @{
+                                double Price = item.Amount * (double)item.Dish.Price;
+                            } @Price руб.
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@Index">Удалить</a>
+                    </td>
+                </tr>
+                    Index++;
+                }
+        </tbody>
+        }
+        else
+        {
+        <span>Нет заказов</span>
+        }
 
         <div class="form-group">
             <input type="submit" value="Заказать" class="btn btn-primary" />
         </div>
     </form>
+    
+    
 </table>
-}
-else
-{
-<span>Нет заказов</span>
-}
+
