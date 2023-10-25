@@ -47,6 +47,6 @@ namespace WebRestaurant.Adapter.Repository
                 .Include(r => r.Role)
                 .FirstOrDefaultAsync(x => x.Id == id);
             context.Users.Remove(ent ?? throw new NullReferenceException());
-        }       
-    }
+        }
+	}
 }

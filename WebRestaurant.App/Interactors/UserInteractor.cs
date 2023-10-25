@@ -103,7 +103,7 @@ namespace WebRestaurant.App.Interactors
             }
         }
 
-        public async Task<Response<IEnumerable<UserDto>>> GetAll()
+		public async Task<Response<IEnumerable<UserDto>>> GetAll()
         {
             try
             {

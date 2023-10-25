@@ -8,15 +8,20 @@ using WebRestaurant.Domain.Entity;
 using WebRestaurant.Adapter.Services;
 using Microsoft.EntityFrameworkCore;
 using WebRestaurant.Shared.Model;
+using WebRestaurant.App.Interactors;
+using System.Linq;
+using WebRestaurant.Shared.Dtos;
 
 namespace WebRestaurant.Client.Controllers
 {
     public class AccountController : Controller
     {
-        private WebDbContext _context;
-        public AccountController(WebDbContext context)
+        private readonly UserInteractor interactor;
+		private readonly RoleInteractor roleInteractor;
+        public AccountController(UserInteractor interactor, RoleInteractor roleInteractor)
         {
-            _context = context;
+            this.interactor = interactor;
+			this.roleInteractor = roleInteractor;
         }
         [HttpGet]
         public IActionResult Register()
@@ -29,17 +34,22 @@ namespace WebRestaurant.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                var user = interactor.GetAll().Result.Value.FirstOrDefault(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    // добавляем пользователя в бд
-                    user = new User { Email = model.Email, Password = model.Password };
-                    Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
-                    if (userRole != null)
-                        user.Role = userRole;
+					// добавляем пользователя в бд
+					user = new UserDto { 
+						Name = model.Name,
+						Email = model.Email,
+						Password = model.Password
+					};
+                    RoleDto userRole = roleInteractor.GetAll().Result.Value.FirstOrDefault(r => r.Name == "user");
+					if (userRole != null)
+                        user.RoleId = userRole.Id;
 
-                    _context.Users.Add(user);
-                    await _context.SaveChangesAsync();
+					await interactor.Create(user);
+
+					user.Role = userRole;
 
                     await Authenticate(user); // аутентификация
 
@@ -61,10 +71,8 @@ namespace WebRestaurant.Client.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users
-                    .Include(u => u.Role)
-                    .FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-                if (user != null)
+				var user = interactor.GetAll().Result.Value.FirstOrDefault(u => u.Email == model.Email && u.Password == u.Password);
+				if (user != null)
                 {
                     await Authenticate(user); // аутентификация
 
@@ -82,7 +90,7 @@ namespace WebRestaurant.Client.Controllers
             // Перенаправить на страницу после деавторизации (например, на главную страницу)
             return RedirectToAction("Login", "Account");
         }
-        private async Task Authenticate(User user)
+        private async Task Authenticate(UserDto user)
         {
             // создаем один claim
             var claims = new List<Claim>
