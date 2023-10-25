@@ -32,13 +32,12 @@
 
                                             <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
                                             <li><a asp-controller="PreOrders" asp-action="Index">Предзаказ</a></li>
-                                            @*<li><a asp-controller="ApplicationOrders" asp-action="Index">Приложения к заказу</a>*@
                                             @if (User.Identity.IsAuthenticated)
                                             {
-                                                <li><a asp-controller="Order" asp-action="Index">Заказы</a></li>
+                                                <li><a asp-controller="Order" asp-action="Index">Мои Заказы</a></li>
                                             }
-                                            @*@if (User.IsInRole("admin"))
-                                            { *@
+                                            @if (User.IsInRole("admin"))
+                                            { 
                                                 <li><a href="#">Админка <i class="ti-angle-down"></i></a>
                                                     <ul class="submenu">
                                                         <li><a asp-controller="User" asp-action="Index">Пользователи</a></li>
@@ -48,10 +47,10 @@
                                                         <li><a asp-controller="Dish" asp-action="Index">Блюда</a></li>
                                                         <li><a asp-controller="DinnerTable" asp-action="Index">Столики</a></li>
                                                         <li><a asp-controller="DishesToOrder" asp-action="Index">Блюда к заказу</a></li>
-                                                        @*<li><a asp-controller="Statistic" asp-action="Index">Статистика</a></li>*@
+                                                        <li><a asp-controller="Statistic" asp-action="Index">Статистика</a></li>
                                                     </ul>
                                                 </li>
-                                            @*}*@
+                                            }
                                         </ul>
                                     </nav>
                                 </div>

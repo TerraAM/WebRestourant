@@ -103,6 +103,12 @@ namespace WebRestaurant.Client.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 
+			//Если выбранный столик занят в это время, то ничего не делать
+			if (!IsTableAvailable(DinnerTableId, Duration, Time))
+			{
+				return RedirectToAction(nameof(Index));
+			}
+
 			UserDto client = new UserDto();
 
 			if (!User.Identity.IsAuthenticated)
@@ -133,7 +139,7 @@ namespace WebRestaurant.Client.Controllers
 					DishesToOrder.Add(new DishesToOrderDto()
 					{
 						DishId = tempDish.Id,
-						OrderId	= newOrder.Id,
+						Order = newOrder,
 						Amount = preOrder.Amount
 					});
 					totalPrice += tempDish.Price * preOrder.Amount;
@@ -141,7 +147,7 @@ namespace WebRestaurant.Client.Controllers
 			}
 
 			newOrder.Price = totalPrice;
-			await orderInteractor.Create(newOrder);
+			//await orderInteractor.Create(newOrder);
 
 			foreach (var dishToOrder in DishesToOrder)
 			{
@@ -168,5 +174,35 @@ namespace WebRestaurant.Client.Controllers
             HttpContext.Session.SetObjectAsJson("preOrdersList", preOrders);
             return RedirectToAction(nameof(Index));
         }
-    }
+
+		public bool IsTableAvailable(int dinnerTableId, int duration, DateTime time)
+		{
+			// Получить все заказы для заданного столика
+			var tableOrders = orderInteractor.GetAll().Result.Value.Where(order => order.DinnerTableId == dinnerTableId);
+
+			// Проверить, занят ли столик в указанное время и на указанную продолжительность
+			foreach (var order in tableOrders)
+			{
+				DateTime orderStartTime = order.DateCreate;
+				DateTime orderEndTime = orderStartTime.AddMinutes(order.Duration);
+
+				DateTime requestedEndTime = time.AddMinutes(duration);
+
+				if (time >= orderStartTime && time < orderEndTime)
+				{
+					// Столик уже занят в это время
+					return false;
+				}
+
+				if (requestedEndTime > orderStartTime && requestedEndTime <= orderEndTime)
+				{
+					// Запрошенное время перекрывается с другим заказом
+					return false;
+				}
+			}
+
+			// Если ни один из заказов не пересекается с запрошенным временем, столик свободен
+			return true;
+		}
+	}
 }
