@@ -23,7 +23,7 @@ namespace WebRestaurant.App.Interactors
         }
         public async Task<Response> Create(OrderStatusDto newOrderStatus)
         {
-            var response = new Response<RoleDto>();
+            var response = new Response<OrderStatusDto>();
             try
             {
                 await repos.CreateAsync(newOrderStatus.ToEntity());

@@ -17,6 +17,7 @@ using WebRestaurant.App.Data;
 using WebRestaurant.App.Interactors;
 using WebRestaurant.Client.Services;
 using WebRestaurant.Domain.Entity;
+using WebRestaurant.Entity.Entity;
 
 namespace WebRestaurant.Client
 {
@@ -61,15 +62,17 @@ namespace WebRestaurant.Client
             services.AddScoped<OrderStatusInteractor>();
             services.AddScoped<RoleInteractor>();
             services.AddScoped<UserInteractor>();
+			services.AddScoped<CommentInteractor>();
 
-            services.AddScoped<IRepository<DinnerTable>, DinnerTableRepository>();
+			services.AddScoped<IRepository<DinnerTable>, DinnerTableRepository>();
             services.AddScoped<IRepository<DishesToOrder>, DishesToOrderRepository>();
             services.AddScoped<IRepository<Dish>, DishRepository>();
             services.AddScoped<IRepository<Order>, OrderRepository>();
             services.AddScoped<IRepository<OrderStatus>, OrderStatusRepository>();
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<User>, UserRepository>();
-        }
+			services.AddScoped<IRepository<Comment>, CommentRepository>();
+		}
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Comment.cs" />
     <Compile Include="Entity\DishesToOrder.cs" />
     <Compile Include="Entity\DinnerTable.cs" />
     <Compile Include="Entity\Order.cs" />

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebRestaurant.Domain;
 using WebRestaurant.Domain.Entity;
+using WebRestaurant.Entity.Entity;
 
 namespace WebRestaurant.Adapter.Services
 {
@@ -13,6 +14,7 @@ namespace WebRestaurant.Adapter.Services
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+		public DbSet<Comment> Comments { get; set; }
         public WebDbContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
