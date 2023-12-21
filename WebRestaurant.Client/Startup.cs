@@ -63,6 +63,8 @@ namespace WebRestaurant.Client
             services.AddScoped<RoleInteractor>();
             services.AddScoped<UserInteractor>();
 			services.AddScoped<CommentInteractor>();
+			services.AddScoped<RatingInteractor>();
+			services.AddScoped<FeedBackInteractor>();
 
 			services.AddScoped<IRepository<DinnerTable>, DinnerTableRepository>();
             services.AddScoped<IRepository<DishesToOrder>, DishesToOrderRepository>();
@@ -72,6 +74,8 @@ namespace WebRestaurant.Client
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<User>, UserRepository>();
 			services.AddScoped<IRepository<Comment>, CommentRepository>();
+			services.AddScoped<IRepository<Rating>, RatingRepository>();
+			services.AddScoped<IRepository<FeedBack>, FeedBackRepository>();
 		}
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

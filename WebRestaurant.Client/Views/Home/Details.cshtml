@@ -19,14 +19,44 @@
 				</div>
 			</div>
 			<div>          
-				<span style="display: block;
-    font-weight: 400;
-    font-size: 26px;
-    color: #DB9A64;">@Model.Dish.Price руб.</span><br>
+				<span style="
+                    display: block;
+                    font-weight: 400;
+                    font-size: 26px;
+                    color: #DB9A64;
+                ">@Model.Dish.Price руб.</span><br>
 				Кол-во: 
 				<input type="number" class="quantity-input" min="1" value="1" max="10">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="rating" id="rating">
+                            <button onclick="openRatingModal()">Оценить блюдо</button>
+                    </div>
+
+                    <div id="ratingModal" class="modal">
+                        <form asp-action="ChangeRating" class="modal-content">
+                            <span class="close" onclick="closeRatingModal()">&times;</span>
+                            <p>Выберите рейтинг:</p>
+                            <div class="rating" id="modalRating">
+                                <input type="hidden" name="DishId" value="@Model.Dish.Id"></input>
+                                <input type="radio" id="modalStar5" name="modalRating" value="5" onclick="setRating(5)">
+                                <label for="modalStar5" title="Отлично">5 звезд</label>
+                                <input type="radio" id="modalStar4" name="modalRating" value="4" onclick="setRating(4)">
+                                <label for="modalStar4" title="Хорошо">4 звезды</label>
+                                <input type="radio" id="modalStar3" name="modalRating" value="3" onclick="setRating(3)">
+                                <label for="modalStar3" title="Нормально">3 звезды</label>
+                                <input type="radio" id="modalStar2" name="modalRating" value="2" onclick="setRating(2)">
+                                <label for="modalStar2" title="Плохо">2 звезды</label>
+                                <input type="radio" id="modalStar1" name="modalRating" value="1" onclick="setRating(1)">
+                                <label for="modalStar1" title="Ужасно">1 звезда</label>
+                            </div>
+                            <button onclick="submitRating()">Оценить</button>
+                        </form>
+                    </div>
+                }
+                <p id="averageRating">Средний рейтинг: <span id="average">@Model.Rating</span></p>
                 <button class="btn btn-success add-to-cart-button" data-product-id="@Model.Dish.Id">Выбрать</button> <br>
-			</div>
+			    </div>
 
 		</div>
 	</div>

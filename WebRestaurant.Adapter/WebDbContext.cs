@@ -15,7 +15,9 @@ namespace WebRestaurant.Adapter.Services
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
 		public DbSet<Comment> Comments { get; set; }
-        public WebDbContext(DbContextOptions options) : base(options)
+		public DbSet<Rating> Ratings { get; set; }
+		public DbSet<FeedBack> FeedBacks { get; set; }
+		public WebDbContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
         }

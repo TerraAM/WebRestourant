@@ -61,8 +61,10 @@
     <Compile Include="Entity\Comment.cs" />
     <Compile Include="Entity\DishesToOrder.cs" />
     <Compile Include="Entity\DinnerTable.cs" />
+    <Compile Include="Entity\FeedBack.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\OrderStatus.cs" />
+    <Compile Include="Entity\Rating.cs" />
     <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\Dish.cs" />

@@ -38,3 +38,30 @@ $(document).ready(function () {
         });
     });
 });
+
+let currentRating = 0;
+
+function openRatingModal() {
+    const modal = document.getElementById('ratingModal');
+    modal.style.display = 'block';
+}
+
+function closeRatingModal() {
+    const modal = document.getElementById('ratingModal');
+    modal.style.display = 'none';
+}
+
+function setRating(rating) {
+    currentRating = rating;
+}
+
+function submitRating() {
+    updateAverageRating();
+    closeRatingModal();
+}
+
+function updateAverageRating() {
+    const averageElement = document.getElementById('average');
+    averageElement.textContent = currentRating;
+    // Здесь также можно отправить текущий рейтинг на сервер для сохранения
+}

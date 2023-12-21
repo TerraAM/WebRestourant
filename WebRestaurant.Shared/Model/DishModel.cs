@@ -11,5 +11,6 @@ namespace WebRestaurant.Shared.Model
 	{
 		public DishDto Dish { get; set; } = new DishDto();
 		public List<CommentDto> Comments { get; set; } = new List<CommentDto>();
+		public double Rating { get; set; } = 0;
 	}
 }

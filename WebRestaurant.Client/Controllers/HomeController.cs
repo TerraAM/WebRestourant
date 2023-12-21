@@ -21,12 +21,14 @@ namespace WebRestaurant.Client.Controllers
 		private readonly DishInteractor interactor;
 		private readonly CommentInteractor commentInteractor;
 		private readonly UserInteractor userInteractor;
+		private readonly RatingInteractor ratingInteractor;
 
-		public HomeController(DishInteractor interactor, CommentInteractor commentInteractor, UserInteractor userInteractor)
+		public HomeController(DishInteractor interactor, CommentInteractor commentInteractor, UserInteractor userInteractor, RatingInteractor ratingInteractor)
         {
 			this.interactor = interactor;
 			this.commentInteractor = commentInteractor;
 			this.userInteractor = userInteractor;
+			this.ratingInteractor = ratingInteractor;
 		}
         // GET: HomeController
         public async Task<IActionResult> Index()
@@ -44,8 +46,13 @@ namespace WebRestaurant.Client.Controllers
 				var dishModel = new DishModel();
 				dishModel.Dish = response.Value;
 				var comments = await commentInteractor.GetAll();
+				var ratings = await ratingInteractor.GetAll();
 				if (comments.Value.Any())
 					dishModel.Comments = comments.Value.Where(x => x.DishId == id).ToList();
+				if (ratings.Value.Any())
+				{
+					dishModel.Rating = ratings.Value.Where(x => x.DishId == id).Select(x=>x.Rate).Average();
+				}
 				return View(dishModel);
 			}
 			return NotFound();
@@ -90,7 +97,6 @@ namespace WebRestaurant.Client.Controllers
 				UserId = author.Id,
 				DishId = DishId,
 				CreatedDate = DateTime.Now
-
 			};
 
 			await commentInteractor.Create(newComment);
@@ -99,6 +105,23 @@ namespace WebRestaurant.Client.Controllers
 			dishModel.Dish = interactor.GetById(DishId).Result.Value;
 			dishModel.Comments = commentInteractor.GetAll().Result.Value.Where(x => x.DishId == DishId).ToList();
 			return View(dishModel);
+		}
+		public async Task<IActionResult> ChangeRating(int modalRating, int DishId)
+		{
+			var user = userInteractor.GetAll().Result.Value.Where(x => x.Email == User.Identity.Name).FirstOrDefault();
+			var rating = ratingInteractor.GetAll().Result.Value.Where(x => x.DishId == DishId && x.UserId == user.Id).FirstOrDefault();
+			if (rating != null)
+			{
+				await ratingInteractor.Delete(rating.Id);
+			}
+			var newRating = new RatingDto() 
+			{
+				Rate = modalRating,
+				UserId = user.Id,
+				DishId = DishId,
+			};
+			await ratingInteractor.Create(newRating);
+			return RedirectToAction("Details", new { id = DishId});
 		}
 	}
 }
