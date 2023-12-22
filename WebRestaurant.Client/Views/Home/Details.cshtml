@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Подробности";
     ViewBag.Title = "Подробнее о блюде";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_without_div.cshtml";
 }
 
 <div class="about_area">
@@ -21,21 +21,56 @@
             <div class="col-lg-6">
                 <div class="about_info_wrap">
                     <h3>
-                        Sed ut perspiciatis unde  <br>
-                        omnis iste natus
+                        @Model.Dish.Name
                     </h3>
                     <span class="long_dash"></span>
-                    <p>Omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Exercitation photo booth stumptown tote bag todo Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation photo booth et 8-bit kale chips proident chillwave deep vow laborum. Aliquip veniam delectus, marfa eiusmod pinterest.</p>
+                    <p>@Model.Dish.Description</p>
                     <ul class="food_list">
                         <li>
                             <img src="~/img/svg_icon/salad.svg" alt="">
-                            <span>Fresh Ingredients</span>
+                            <span>Свежие ингредиенты</span>
                         </li>
                         <li>
                             <img src="~/img/svg_icon/tray.svg" alt="">
-                            <span>Expert cooker</span>
+                            <span>Профессиональная готовка</span>
                         </li>
                     </ul>
+                    <br>
+                    <p id="averageRating">Средний рейтинг: <span id="average">@Model.Rating</span></p>
+                    <div class="button-group-area mt-40">
+                        Кол-во:
+                        <input type="number" class="single-input quantity-input" min="1" value="1" max="10">
+                        <a class="genric-btn primary e-large add-to-cart-button" data-product-id="@Model.Dish.Id">Выбрать</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <button onclick="openRatingModal()" class="genric-btn primary-border e-large">Оценить блюдо</button>
+
+                            <div id="ratingModal" class="modal">
+                                <form asp-action="ChangeRating" class="modal-content">
+                                    <span class="close" onclick="closeRatingModal()">&times;</span>
+                                    <p>Выберите рейтинг:</p>
+                                    <div class="rating" id="modalRating">
+                                        <input type="hidden" name="DishId" value="@Model.Dish.Id"></input>
+                                        <input type="radio" id="modalStar5" name="modalRating" value="5" onclick="setRating(5)">
+                                        <label for="modalStar5" title="Отлично">5 звезд</label>
+                                        <input type="radio" id="modalStar4" name="modalRating" value="4" onclick="setRating(4)">
+                                        <label for="modalStar4" title="Хорошо">4 звезды</label>
+                                        <input type="radio" id="modalStar3" name="modalRating" value="3" onclick="setRating(3)">
+                                        <label for="modalStar3" title="Нормально">3 звезды</label>
+                                        <input type="radio" id="modalStar2" name="modalRating" value="2" onclick="setRating(2)">
+                                        <label for="modalStar2" title="Плохо">2 звезды</label>
+                                        <input type="radio" id="modalStar1" name="modalRating" value="1" onclick="setRating(1)">
+                                        <label for="modalStar1" title="Ужасно">1 звезда</label>
+                                    </div>
+                                    <button onclick="submitRating()" class="genric-btn primary small">Оценить</button>
+                                </form>
+                            </div>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-controller="Dish" asp-action="Edit" asp-route-id="@Model.Dish.Id" class="genric-btn primary-border e-large">Изменить</a>
+                        }
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -44,7 +79,7 @@
                         <img src="~/img/about/big.png" alt="">
                     </div>
                     <div class="small_img">
-                        <img src="~/img/about/small.png" alt="">
+                        <img src="@Model.Dish.PhotoPath" alt="" alt style="width: 200px;">
                     </div>
                 </div>
             </div>
@@ -52,125 +87,76 @@
     </div>
 </div>
 
-
-@*<div class="whole-wrap">
-		<div class="container box_1170">
-			<div class="section-top-border">
-                <h3 class="mb-30">@Model.Dish.Name</h3>
-				<div class="row">
-					<div class="col-md-3">
-                        <img src="@Model.Dish.PhotoPath" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-9 mt-sm-20">
-                        <p>@Model.Dish.Description</p>
-					</div>
-				</div>
-			</div>
-			<div>          
-				<span style="
-                    display: block;
-                    font-weight: 400;
-                    font-size: 26px;
-                    color: #DB9A64;
-                ">@Model.Dish.Price руб.</span><br>
-				Кол-во: 
-				<input type="number" class="quantity-input" min="1" value="1" max="10">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="rating" id="rating">
-                            <button onclick="openRatingModal()">Оценить блюдо</button>
-                    </div>
-
-                    <div id="ratingModal" class="modal">
-                        <div class="modal-content">
-                            <form asp-action="ChangeRating" class="modal-content">
-                                <span class="close" onclick="closeRatingModal()">&times;</span>
-                                <p>Выберите рейтинг:</p>
-                                <div class="rating" id="modalRating">
-                                    <input type="hidden" name="DishId" value="@Model.Dish.Id"></input>
-                                    <input type="radio" id="modalStar5" name="modalRating" value="5" onclick="setRating(5)">
-                                    <label for="modalStar5" title="Отлично">5 звезд</label>
-                                    <input type="radio" id="modalStar4" name="modalRating" value="4" onclick="setRating(4)">
-                                    <label for="modalStar4" title="Хорошо">4 звезды</label>
-                                    <input type="radio" id="modalStar3" name="modalRating" value="3" onclick="setRating(3)">
-                                    <label for="modalStar3" title="Нормально">3 звезды</label>
-                                    <input type="radio" id="modalStar2" name="modalRating" value="2" onclick="setRating(2)">
-                                    <label for="modalStar2" title="Плохо">2 звезды</label>
-                                    <input type="radio" id="modalStar1" name="modalRating" value="1" onclick="setRating(1)">
-                                    <label for="modalStar1" title="Ужасно">1 звезда</label>
-                                </div>
-                                <button onclick="submitRating()">Оценить</button>
-                            </form>
-                        </div>
-                    </div>
-                }
-                <p id="averageRating">Средний рейтинг: <span id="average">@Model.Rating</span></p>
-                <button class="btn btn-success add-to-cart-button" data-product-id="@Model.Dish.Id">Выбрать</button> <br>
-			    </div>
-
-		</div>
-	</div>
-	<!-- End Align Area -->*@
-<div>
-	@if (User.IsInRole("admin"))
-	{ 
-        <a asp-action="Edit" asp-route-id="@Model.Dish.Id">Изменить</a>
-	}
-    <div class="comments-area">
-        @if (Model.Comments.Any())
-        {
-            <h4>Комментариев @Model.Comments.Count</h4>
-            foreach (var comment in Model.Comments)
-            {
-                <div class="comment-list">
-                    <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                            <div class="thumb">
-                                <img src="~/img/comment/blank-avatar.jpg" alt="">
-                            </div>
-                            <div class="desc">
-                                <p class="comment">
-                                    @comment.Content
-                                </p>
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex align-items-center">
-                                        <h5>
-                                            <a href="#">@comment.User.Name</a>
-                                        </h5>
-                                        <p class="date">@comment.CreatedDate</p>
+<div class="Delicious_area">
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div>
+	            
+                <div class="comments-area">
+                    @if (Model.Comments.Any())
+                    {
+                        <h4>Комментариев @Model.Comments.Count</h4>
+                        foreach (var comment in Model.Comments)
+                        {
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="~/img/comment/blank-avatar.jpg" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                @comment.Content
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">@comment.User.Name</a>
+                                                    </h5>
+                                                    <p class="date">@comment.CreatedDate</p>
+                                                </div>
+                                                @if (User.IsInRole("admin"))
+                                                {
+                                                    <div class="reply-btn">
+                                                        <a asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id" class="btn-reply text-uppercase">Удалить</a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <h4>Комментариев нет :(</h4>
-        }
+                        }
+                    }
+                    else
+                    {
+                        <h4>Комментариев нет :(</h4>
+                    }
         
-    </div>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div class="comment-form">
-            <h4>Оставить комментарий</h4>
-        <form asp-action="Details" class="form-contact comment_form" id="commentForm">
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                            <textarea class="form-control w-100" name="Text" id="comment" cols="30" rows="4"
-                                  placeholder="Ваш комментарий"></textarea>
-                    </div>
                 </div>
-                <input name="AuthorEmail" value="@User.Identity.Name" hidden class="form-control" />
-                <input name="DishId" value="@Model.Dish.Id" hidden class="form-control" />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="comment-form">
+                        <h4>Оставить комментарий</h4>
+                    <form asp-action="Details" class="form-contact comment_form" id="commentForm">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                        <textarea class="form-control w-100" name="Text" id="comment" cols="30" rows="4"
+                                              placeholder="Ваш комментарий"></textarea>
+                                </div>
+                            </div>
+                            <input name="AuthorEmail" value="@User.Identity.Name" hidden class="form-control" />
+                            <input name="DishId" value="@Model.Dish.Id" hidden class="form-control" />
+                        </div>
+                        <div class="form-group">
+                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+                }
             </div>
-            <div class="form-group">
-                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">Отправить</button>
-            </div>
-        </form>
+        </main>
     </div>
-    }
 </div>
+

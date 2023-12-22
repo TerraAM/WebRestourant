@@ -76,7 +76,6 @@ body {
 .Delicious_area img {
     max-height: 200px;
     max-width: 200px;
-    width:200px;
 }
 
 .Delicious_area .tablist_menu {
@@ -223,7 +222,7 @@ body {
     margin: 10% auto; /* Уменьшили margin с 15% до 10% */
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; /* Уменьшили ширину окна до 60% */
+    width: 30%; /* Уменьшили ширину окна до 60% */
     text-align: center; /* Центрируем содержимое */
 }
 
@@ -240,3 +239,22 @@ body {
         text-decoration: none;
         cursor: pointer;
     }
+
+@media (max-width: 850px) {
+    /* line 1, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
+    .modal-content {
+        width: 90%; /* Уменьшили ширину окна до 60% */
+    }
+}
+@media (max-width: 1440px) {
+    /* line 1, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
+    .modal-content {
+        width: 40%; /* Уменьшили ширину окна до 60% */
+    }
+}
+@media (max-width: 1040px) {
+    /* line 1, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
+    .modal-content {
+        width: 50%; /* Уменьшили ширину окна до 60% */
+    }
+}

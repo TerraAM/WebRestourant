@@ -5,38 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Регистрация</h2>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-md-4">
         <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
             <div class="validation" asp-validation-summary="ModelOnly"></div>
 
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control single-input" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control single-input" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control single-input" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
+                <input asp-for="ConfirmPassword" class="form-control single-input" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
 
-            <div>
-                <input type="submit" value="Регистрация" />
+            <div class="form-group text-center">
+                <input type="submit" value="Регистрация" class="genric-btn primary e-large" />
+                <a asp-action="Login" asp-controller="Account"class="genric-btn primary-border e-large">Войти</a>
             </div>
         </form>
     </div>
