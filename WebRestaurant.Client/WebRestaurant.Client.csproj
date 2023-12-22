@@ -26,4 +26,8 @@
     <ProjectReference Include="..\WebRestaurant.Entity\WebRestaurant.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\service\" />
+  </ItemGroup>
+
 </Project>

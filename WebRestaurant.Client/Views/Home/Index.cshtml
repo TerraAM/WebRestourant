@@ -2,18 +2,54 @@
 
 @{
     ViewData["Title"] = "Главная";
+    ViewBag.Title = "У нас только самое вкусное";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
-    <div class="col-xl-12">
-        <div class="section_title text-center mb-50">
-            <h3>Вкусная еда, для вас!</h3>
+
+<div class="Delicious_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-50">
+                    <h3>Delicious Food For You</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    @if (Model.Any())
+                    {
+                        foreach (var Dish in Model)
+                        {
+                            <div class="col-xl-6 col-12">
+                                <div class="single_delicious d-flex align-items-center">
+                                    <div class="thumb">
+                                        <img src="img/delicious/1.png" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <h3>#@Dish.Id. @Dish.Name</h3>
+                                        <p>@Dish.Description</p>
+                                        <span>@Dish.Price руб.</span>
+                                        <div class="button-group-area mt-40">
+                                            Кол-во:
+                                            <input type="number" class="single-input quantity-input" min="1" value="1" max="10">
+                                            <a class="genric-btn primary e-large add-to-cart-button" data-product-id="@Dish.Id">Выбрать</a>
+                                            <a class="genric-btn primary-border e-large" asp-action="Details" asp-route-id="@Dish.Id">Подробнее</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-
-<div class="tab-content" id="pills-tabContent">
+@*<div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <div class="row">
             @if (Model.Any())
@@ -47,7 +83,7 @@
             }
         </div>
     </div>
-</div>
+</div>*@
 
 <script>
     function showIngredients(id) {

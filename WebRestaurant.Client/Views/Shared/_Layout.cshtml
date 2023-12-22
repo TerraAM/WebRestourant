@@ -5,16 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebRestaurant.Client</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/gijgo.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/slicknav.css">
+
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
     <header>
         <div class="header-area ">
-            <div id="sticky-header" class="main-header-area sticky">
+            <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid p-0">
                     <div class="header_bottom_border">
                         <div class="row align-items-center no-gutters">
@@ -37,8 +46,9 @@
                                                 <li><a asp-controller="Order" asp-action="Index">Мои Заказы</a></li>
                                             }
                                             @if (User.IsInRole("admin"))
-                                            { 
-                                                <li><a href="#">Админка <i class="ti-angle-down"></i></a>
+                                            {
+                                                <li>
+                                                    <a href="#">Админка <i class="ti-angle-down"></i></a>
                                                     <ul class="submenu">
                                                         <li><a asp-controller="User" asp-action="Index">Пользователи</a></li>
                                                         <li><a asp-controller="Role" asp-action="Index">Роли</a></li>
@@ -63,7 +73,8 @@
                                     @if (!User.Identity.IsAuthenticated)
                                     {
                                         <a asp-controller="Account" asp-action="Login">Авторизоваться</a>
-                                    } else
+                                    }
+                                    else
                                     {
                                         <a asp-controller="Account" asp-action="Logout">Выйти (@User.Identity.Name)</a>
                                     }
@@ -79,6 +90,18 @@
             </div>
         </div>
     </header>
+
+    <div class="bradcam_area bradcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="Delicious_area">
         <div class="container">

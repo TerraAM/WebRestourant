@@ -1,11 +1,59 @@
 ﻿@model WebRestaurant.Shared.Model.DishModel
 
 @{
-    ViewData["Title"] = "Детали";
+    ViewData["Title"] = "Подробности";
+    ViewBag.Title = "Подробнее о блюде";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="whole-wrap">
+<div class="about_area">
+    <div class="icon_1 d-none d-md-block">
+        <img src="~/img/icon/1.png" alt="">
+    </div>
+    <div class="icon_2 d-none d-md-block">
+        <img src="~/img/icon/2.png" alt="">
+    </div>
+    <div class="icon_3 d-none d-md-block">
+        <img src="~/img/icon/3.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="about_info_wrap">
+                    <h3>
+                        Sed ut perspiciatis unde  <br>
+                        omnis iste natus
+                    </h3>
+                    <span class="long_dash"></span>
+                    <p>Omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Exercitation photo booth stumptown tote bag todo Banksy, elit small batch freegan sed. Craft beer elit seitan exercitation photo booth et 8-bit kale chips proident chillwave deep vow laborum. Aliquip veniam delectus, marfa eiusmod pinterest.</p>
+                    <ul class="food_list">
+                        <li>
+                            <img src="~/img/svg_icon/salad.svg" alt="">
+                            <span>Fresh Ingredients</span>
+                        </li>
+                        <li>
+                            <img src="~/img/svg_icon/tray.svg" alt="">
+                            <span>Expert cooker</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about_img">
+                    <div class="img_1">
+                        <img src="~/img/about/big.png" alt="">
+                    </div>
+                    <div class="small_img">
+                        <img src="~/img/about/small.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="whole-wrap">
 		<div class="container box_1170">
 			<div class="section-top-border">
                 <h3 class="mb-30">@Model.Dish.Name</h3>
@@ -34,24 +82,26 @@
                     </div>
 
                     <div id="ratingModal" class="modal">
-                        <form asp-action="ChangeRating" class="modal-content">
-                            <span class="close" onclick="closeRatingModal()">&times;</span>
-                            <p>Выберите рейтинг:</p>
-                            <div class="rating" id="modalRating">
-                                <input type="hidden" name="DishId" value="@Model.Dish.Id"></input>
-                                <input type="radio" id="modalStar5" name="modalRating" value="5" onclick="setRating(5)">
-                                <label for="modalStar5" title="Отлично">5 звезд</label>
-                                <input type="radio" id="modalStar4" name="modalRating" value="4" onclick="setRating(4)">
-                                <label for="modalStar4" title="Хорошо">4 звезды</label>
-                                <input type="radio" id="modalStar3" name="modalRating" value="3" onclick="setRating(3)">
-                                <label for="modalStar3" title="Нормально">3 звезды</label>
-                                <input type="radio" id="modalStar2" name="modalRating" value="2" onclick="setRating(2)">
-                                <label for="modalStar2" title="Плохо">2 звезды</label>
-                                <input type="radio" id="modalStar1" name="modalRating" value="1" onclick="setRating(1)">
-                                <label for="modalStar1" title="Ужасно">1 звезда</label>
-                            </div>
-                            <button onclick="submitRating()">Оценить</button>
-                        </form>
+                        <div class="modal-content">
+                            <form asp-action="ChangeRating" class="modal-content">
+                                <span class="close" onclick="closeRatingModal()">&times;</span>
+                                <p>Выберите рейтинг:</p>
+                                <div class="rating" id="modalRating">
+                                    <input type="hidden" name="DishId" value="@Model.Dish.Id"></input>
+                                    <input type="radio" id="modalStar5" name="modalRating" value="5" onclick="setRating(5)">
+                                    <label for="modalStar5" title="Отлично">5 звезд</label>
+                                    <input type="radio" id="modalStar4" name="modalRating" value="4" onclick="setRating(4)">
+                                    <label for="modalStar4" title="Хорошо">4 звезды</label>
+                                    <input type="radio" id="modalStar3" name="modalRating" value="3" onclick="setRating(3)">
+                                    <label for="modalStar3" title="Нормально">3 звезды</label>
+                                    <input type="radio" id="modalStar2" name="modalRating" value="2" onclick="setRating(2)">
+                                    <label for="modalStar2" title="Плохо">2 звезды</label>
+                                    <input type="radio" id="modalStar1" name="modalRating" value="1" onclick="setRating(1)">
+                                    <label for="modalStar1" title="Ужасно">1 звезда</label>
+                                </div>
+                                <button onclick="submitRating()">Оценить</button>
+                            </form>
+                        </div>
                     </div>
                 }
                 <p id="averageRating">Средний рейтинг: <span id="average">@Model.Rating</span></p>
@@ -60,44 +110,67 @@
 
 		</div>
 	</div>
-	<!-- End Align Area -->
+	<!-- End Align Area -->*@
 <div>
 	@if (User.IsInRole("admin"))
 	{ 
-        <a asp-action="Edit" asp-route-id="@Model.Dish.Id">Изменить</a> <text>|</text>
+        <a asp-action="Edit" asp-route-id="@Model.Dish.Id">Изменить</a>
 	}
-    <a asp-action="Index">К списку</a>
-    <div class="comments">
-        <h3>Комментарии</h3>
+    <div class="comments-area">
         @if (Model.Comments.Any())
         {
+            <h4>Комментариев @Model.Comments.Count</h4>
             foreach (var comment in Model.Comments)
             {
-                <div class="comment">
-                    <div class="comment-author">@comment.User.Name</div>
-                    <div class="comment-date">@comment.CreatedDate</div>
-                    <div class="comment-text">@comment.Content</div>
+                <div class="comment-list">
+                    <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                            <div class="thumb">
+                                <img src="~/img/comment/blank-avatar.jpg" alt="">
+                            </div>
+                            <div class="desc">
+                                <p class="comment">
+                                    @comment.Content
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <h5>
+                                            <a href="#">@comment.User.Name</a>
+                                        </h5>
+                                        <p class="date">@comment.CreatedDate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
         }
         else
         {
-            <span>Нет комментариев</span>
+            <h4>Комментариев нет :(</h4>
         }
+        
     </div>
     @if (User.Identity.IsAuthenticated)
     {
         <div class="comment-form">
-            <h3>Оставить комментарий</h3>
-            <form asp-action="Details">
+            <h4>Оставить комментарий</h4>
+        <form asp-action="Details" class="form-contact comment_form" id="commentForm">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                            <textarea class="form-control w-100" name="Text" id="comment" cols="30" rows="4"
+                                  placeholder="Ваш комментарий"></textarea>
+                    </div>
+                </div>
                 <input name="AuthorEmail" value="@User.Identity.Name" hidden class="form-control" />
                 <input name="DishId" value="@Model.Dish.Id" hidden class="form-control" />
-                <div class="form-group">
-                    <label for="comment">Комментарий</label>
-                    <textarea name="Text" class="form-control" id="comment" rows="3" placeholder="Введите ваш комментарий"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Отправить</button>
-            </form>
-        </div>
+            </div>
+            <div class="form-group">
+                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">Отправить</button>
+            </div>
+        </form>
+    </div>
     }
 </div>
