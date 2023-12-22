@@ -22,13 +22,15 @@ namespace WebRestaurant.Client.Controllers
 		private readonly CommentInteractor commentInteractor;
 		private readonly UserInteractor userInteractor;
 		private readonly RatingInteractor ratingInteractor;
+		private readonly FeedBackInteractor feedBackInteractor;
 
-		public HomeController(DishInteractor interactor, CommentInteractor commentInteractor, UserInteractor userInteractor, RatingInteractor ratingInteractor)
+		public HomeController(DishInteractor interactor, CommentInteractor commentInteractor, UserInteractor userInteractor, RatingInteractor ratingInteractor, FeedBackInteractor feedBackInteractor)
         {
 			this.interactor = interactor;
 			this.commentInteractor = commentInteractor;
 			this.userInteractor = userInteractor;
 			this.ratingInteractor = ratingInteractor;
+			this.feedBackInteractor = feedBackInteractor;
 		}
         // GET: HomeController
         public async Task<IActionResult> Index()
@@ -106,6 +108,25 @@ namespace WebRestaurant.Client.Controllers
 			dishModel.Comments = commentInteractor.GetAll().Result.Value.Where(x => x.DishId == DishId).ToList();
 			return View(dishModel);
 		}
+		public IActionResult FeedBack()
+		{
+			return View();
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> FeedBack([Bind("Id,Email,Title,Context,CreateTime")] FeedBackDto FeedBackDto)
+		{
+			if (ModelState.IsValid)
+			{
+				var response = await feedBackInteractor.Create(FeedBackDto);
+				if (response.IsSuccess)
+				{
+					return RedirectToAction(nameof(Index));
+				}
+			}
+			return View(FeedBackDto);
+		}
+
 		public async Task<IActionResult> ChangeRating(int modalRating, int DishId)
 		{
 			var user = userInteractor.GetAll().Result.Value.Where(x => x.Email == User.Identity.Name).FirstOrDefault();

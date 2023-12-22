@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +15,8 @@ using WebRestaurant.Shared.Dtos;
 
 namespace WebRestaurant.Client.Controllers
 {
-    public class CommentController : Controller
+	[Authorize(Roles = "admin")]
+	public class CommentController : Controller
     {
 		private readonly CommentInteractor interactor;
 		private readonly UserInteractor userInteractor;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,8 @@ using WebRestaurant.Shared.Dtos;
 
 namespace WebRestaurant.Client.Controllers
 {
-    public class FeedBackController : Controller
+	[Authorize(Roles = "admin")]
+	public class FeedBackController : Controller
     {
 		private readonly FeedBackInteractor interactor;
 
@@ -48,6 +50,7 @@ namespace WebRestaurant.Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email,Title,Context,CreateTime")] FeedBackDto FeedBackDto)
         {
+			
 			if (ModelState.IsValid)
 			{
 				var response = await interactor.Create(FeedBackDto);
