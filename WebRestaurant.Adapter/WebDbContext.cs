@@ -36,6 +36,7 @@ namespace WebRestaurant.Adapter.Services
 			string waitingOrderStatus = "На ожидании";
 			string inProgressOrderStatus = "В процессе";
 			string compliteOrderStatus = "Готов";
+			string cancelOrderStatus = "Отменен";
 
 			Role adminRole = new Role { Id = 1, Name = adminRoleName };
 			Role userRole = new Role { Id = 2, Name = userRoleName };
@@ -47,10 +48,11 @@ namespace WebRestaurant.Adapter.Services
 			OrderStatus status1 = new OrderStatus() { Id = 1, Name = waitingOrderStatus };
 			OrderStatus status2 = new OrderStatus() { Id = 2, Name = inProgressOrderStatus };
 			OrderStatus status3 = new OrderStatus() { Id = 3, Name = compliteOrderStatus };
+			OrderStatus status4 = new OrderStatus() { Id = 4, Name = cancelOrderStatus };
 
 			modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole, waiterRole });
 			modelBuilder.Entity<User>().HasData(new User[] { Anonymous, adminUser, User, waiter });
-			modelBuilder.Entity<OrderStatus>().HasData(new OrderStatus[] { status1, status2, status3 });
+			modelBuilder.Entity<OrderStatus>().HasData(new OrderStatus[] { status1, status2, status3, status4 });
 			modelBuilder.Entity<DinnerTable>().HasData(new DinnerTable() {Id = 1 });
 
             base.OnModelCreating(modelBuilder);

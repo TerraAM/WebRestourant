@@ -139,20 +139,24 @@ namespace WebRestaurant.Client.Controllers
 					DishesToOrder.Add(new DishesToOrderDto()
 					{
 						DishId = tempDish.Id,
-						Order = newOrder,
 						Amount = preOrder.Amount
 					});
 					totalPrice += tempDish.Price * preOrder.Amount;
 				}
+				
 			}
 
 			newOrder.Price = totalPrice;
-			//await orderInteractor.Create(newOrder);
+			await orderInteractor.Create(newOrder);
+
+			var order = orderInteractor.GetAll().Result.Value.LastOrDefault();
 
 			foreach (var dishToOrder in DishesToOrder)
 			{
+				dishToOrder.OrderId = order.Id;
 				await dishesToOrderInteractor.Create(dishToOrder);
 			}
+
 			HttpContext.Session.Clear();
 
 			ViewData["DinnerTableId"] = new SelectList(dinnerTableInteractor.GetAll().Result.Value, "Id", "Number");

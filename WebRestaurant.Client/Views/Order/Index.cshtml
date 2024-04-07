@@ -55,14 +55,35 @@
                 @Html.DisplayFor(modelItem => item.Client.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.Name)
+                @if (item.Status.Id == 1)
+                {
+                    <span class="genric-btn warning-border">@Html.DisplayFor(modelItem => item.Status.Name)</span>
+                }
+                @if (item.Status.Id == 2)
+                {
+                    <span class="genric-btn info-border">@Html.DisplayFor(modelItem => item.Status.Name)</span>
+                }
+                @if (item.Status.Id == 3)
+                {
+                    <span class="genric-btn success-border">@Html.DisplayFor(modelItem => item.Status.Name)</span>
+                }
+                @if (item.Status.Id == 4)
+                {
+                    <span class="genric-btn danger-border">@Html.DisplayFor(modelItem => item.Status.Name)</span>
+                }
             </td>
             <td>
                 @if (User.IsInRole("admin"))
                 {
                     <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> <text>|</text>
                     <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> <text>|</text>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                }else
+                {
+                    if (item.Status.Id == 1)
+                    {
+                        <a class="genric-btn primary e-large add-to-cart-button" href="https://yoomoney.ru/to/4100118630300845">Оплатить</a>
+                    }
                 }
             </td>
         </tr>
